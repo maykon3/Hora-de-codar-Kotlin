@@ -23,5 +23,5 @@ fun main() {
         num++
     }
     soma = soma / quantidade
-    println("A media aritmetica dos numeros recebidos e: $soma")
+    println("A media aritmetica dos numeros recebidos é: $soma")
 }

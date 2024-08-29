@@ -4,7 +4,6 @@ package ex_codar_3
 //N  é um valor informado pelo usuário
 
 fun main() {
-
     print("Informe um valor: ")
     var numero = readln().toInt()
     var numero2 = 1

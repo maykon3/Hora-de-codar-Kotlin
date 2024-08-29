@@ -4,24 +4,12 @@ package ex_codar_3
 // Considere que o primeiro sempre será menor que o segundo
 
 fun main() {
+    var list = mutableListOf<Double>()
 
-    print("Informe um valor: ")
-    var num = readln().toDouble()
-    print("Informe outro valor: ")
-    var num2 = readln().toDouble()
-    var soma = 0.0
-    var quantidade = 0
-
-    while(num > num2){
-        print("Informe um valor maior que o primeiro: ")
-        num2 = readln().toDouble()
+    for(n in 1..2){
+        print("Informe a nota: ")
+        var numero = readln().toDouble()
+        list.add(numero.toDouble())
     }
-
-    while( num <= num2 ){
-        soma = num + soma
-        quantidade++
-        num++
-    }
-    soma = soma / quantidade
-    println("A media aritmetica dos numeros recebidos é: $soma")
+    print("A media aritmetica dos numeros informado e: ${list.sum()/list.count()}")
 }

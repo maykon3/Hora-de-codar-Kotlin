@@ -8,7 +8,7 @@ fun main() {
     var entre = 0
     var fora = 0
     for (n in 1..10){
-        println("informe valor: ")
+        print("informe valor: ")
         numero = readln().toInt()
         list.add(numero.toInt())
         if (numero < 24 || numero > 42){

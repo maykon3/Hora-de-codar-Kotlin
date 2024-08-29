@@ -5,5 +5,24 @@ package ex_codar_3
 // deve ser solicitado um novo valor ao usuário.
 
 fun main() {
+    var list = mutableListOf<Double>()
+    var numero = 0.0
+    var soma = 0.0
+    var media = 0.0
+
+    for(n in 1..6){
+        print("Insira as Notas: ")
+        numero = readln().toDouble()
+        while( numero < 0 || numero >10){
+            println("informe um novo valor, entre 0 - 10")
+            print("Insira as Notas: ")
+            numero = readln().toDouble()
+        }
+        soma = numero + soma
+
+    }
+
+    media = soma / 6
+    println("A media deste aluno e: $media")
 
 }

@@ -38,7 +38,7 @@ fun main() {
             list.add(fruta.toString())
             println("$list")
         }
-        print("Deseja continuar ?")
+        print("Deseja adicionar mais frutas?")
         retorno = readln().toString()
     }
     if (retorno == "nao") {

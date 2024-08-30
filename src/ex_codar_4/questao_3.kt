@@ -44,7 +44,7 @@ fun main() {
     if (retorno == "nao") {
         println("Lista encerrada \n sua lista esta composta por: $list")
         mercado()
-}
+    }
 
 }
 
@@ -64,17 +64,17 @@ fun mercado() {
     while (go == "sim") {
         print("Informe o nome de uma fruta: ")
         compra = readln().toString()
-        if(ricoy.contains(compra)) {
+        if (ricoy.contains(compra)) {
             ricoy.remove(compra.toString())
-        }else{
+        } else {
             println("Fruta indisponivel no nosso mercado")
             println("Temos essas opcoes de fruta: $ricoy")
         }
-        if(ricoy.isEmpty()){
+        if (ricoy.isEmpty()) {
             println("Lista de compras finalizada")
             pare()
             break
-        }else {
+        } else {
             println("Continuar comprando ?")
             go = readln().toString()
         }

@@ -1,32 +1,30 @@
 package ex_codar_4
 
-var list = mutableListOf<String>("Banana", "Maça", "Manga", "Uva")
-var ricoy = mutableListOf<String>("Banana", "Maça", "Manga", "Uva")
+var list = mutableListOf<String>("BANANA", "MAÇA", "MANGA", "UVA")
+var ricoy = mutableListOf<String>("BANANA", "MAÇA", "MANGA", "UVA")
 
 fun main() {
 
     println(list)
 
     print("Informe o nome de uma fruta: ")
-    var fruta: String = readln()
+    var fruta: String = readln().uppercase()
 
     println("Deseja incluir a lista de compras ou excluir? ")
     var condicao: String = readln()
 
     if (condicao == "excluir") {
         list.remove(fruta.toString())
-        println("$list")
     } else if (condicao == "incluir") {
         list.add(fruta.toString())
-        println("$list")
     }
     println(list)
-    print("Deseja adicionar mais frutas? ")
-    var retorno: String = readln()
+    print("Deseja adicionar ou riscar alguma frutas? (S/N)")
+    var retorno: String = readln().uppercase()
 
-    while (retorno == "sim") {
+    while (retorno == "S") {
         print("Informe o nome de uma fruta: ")
-        var fruta: String = readln()
+        fruta = readln().uppercase()
 
         println("Deseja incluir a lista de compras ou excluir? ")
         var condicao: String = readln()
@@ -38,11 +36,12 @@ fun main() {
             list.add(fruta.toString())
             println("$list")
         }
-        print("Deseja adicionar mais frutas?")
-        retorno = readln().toString()
+        print("Deseja adicionar mais frutas? (S/N)")
+        retorno = readln().uppercase()
     }
-    if (retorno == "nao") {
+    if (retorno == "N") {
         println("Lista encerrada \n sua lista esta composta por: $list")
+        println("")
         mercado()
     }
 
@@ -52,18 +51,18 @@ fun main() {
 fun mercado() {
     println("Vamos as compras!")
     println("Informe o nome de uma fruta: ")
-    var compra: String = readln()
+    var compra: String = readln().uppercase()
     if (ricoy.contains(compra)) {
         ricoy.remove(compra.toString())
     } else {
         println("Fruta indisponivel no nosso mercado")
         println("Temos essas opcoes de fruta: $ricoy")
     }
-    print("Deseja comprar mais frutas? ")
-    var go = readln().toString()
-    while (go == "sim") {
+    print("Deseja comprar mais frutas? (S/N) ")
+    var go = readln().uppercase()
+    while (go == "S") {
         print("Informe o nome de uma fruta: ")
-        compra = readln().toString()
+        compra = readln().uppercase()
         if (ricoy.contains(compra)) {
             ricoy.remove(compra.toString())
         } else {
@@ -75,11 +74,11 @@ fun mercado() {
             pare()
             break
         } else {
-            println("Continuar comprando ?")
-            go = readln().toString()
+            println("Continuar comprando ? (S/N)")
+            go = readln().toString().uppercase()
         }
     }
-    if (go == "nao") {
+    if (go == "N") {
         pare()
     }
 }

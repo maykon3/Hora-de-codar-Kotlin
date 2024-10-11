@@ -27,9 +27,6 @@ var quartos = mutableListOf(
     "livre",
     "livre",
     )
-var diaria = 55.0
-
-
 fun main() {
 
     print("Qual o seu nome: ")
@@ -75,7 +72,7 @@ fun cadastrarQuartos() {
 
     print("Qual o valor padrão da diária? ")
     var daily = readln().toDouble()
-    while (daily != diaria ){
+    while (daily != 55.0 ){
         print( "Valor inválido, $nome\n\n")
         print("Qual o valor padrão da diária?")
         daily = readln().toDouble()
@@ -83,7 +80,7 @@ fun cadastrarQuartos() {
 
     print(" Quantas diárias serão necessárias? ")
     var estadia = readln().toInt()
-    var hospedagem = diaria*estadia
+    var hospedagem = 55.0*estadia
 
     println("\nO valor de $estadia dias de hospedagem é de R$ $hospedagem\n ")
 
@@ -133,11 +130,12 @@ fun sairDoHotel() {
     println("Você deseja sair? S/N")
     var confirma = readln().uppercase()
     if (confirma == "S") {
-        println( "Muito obrigado e até logo, .")
+        println( "Muito obrigado e até logo")
+        exitProcess(0)
     } else if ( confirma == "N") {
         inicio()
     } else{
-        inicio()
+
     }
 }
 
@@ -166,11 +164,40 @@ fun cadastrarHospedes() {
 }
 
 fun cadastrarHospede(listaHospedes: MutableList<String>) {
-    println("Cadastro de Hóspedes.\nPor favor, informe o nome da Hóspede:")
-    val novoHospede = readln()
-    listaHospedes.add(novoHospede)
+    print("Qual o valor padrão da diária?")
+    var daily= readln().toDouble()
+    while (daily != 100.0 ){
+        print( "Valor inválido, $nome\n\n")
+        print("Qual o valor padrão da diária?")
+        daily = readln().toDouble()
+    }
 
-    println("$novoHospede cadastrado com sucesso!")
+    print("Qual o nome do Hóspede?")
+    var name = readln().uppercase()
+    listaHospedes.add(name)
+    while (name != "PARE") {
+        print("Qual a idade do Hóspede?")
+        var idade = readln().toInt()
+        if (idade >= 60) {
+            println(" $name cadastrada(o) com sucesso.\n $name paga meia ")
+        } else if (idade <= 6) {
+            println(" $name cadastrada(o) com sucesso.\n $name possui gratuidade")
+        } else {
+            println(" $name cadastrada(o) com sucesso.")
+        }
+
+        print("Qual o nome do Hóspede?")
+        name = readln().uppercase()
+        listaHospedes.add(name)
+
+        if(name == "PARE"){
+            listaHospedes.remove(name)
+        }else{
+
+        }
+
+    }
+
     println("Lista de Hóspedes atuais " + listaHospedes)
 
 }

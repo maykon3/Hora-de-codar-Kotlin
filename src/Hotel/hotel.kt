@@ -27,6 +27,7 @@ var quartos = mutableListOf(
     "livre",
     "livre",
     )
+var diaria = 55.0
 
 
 fun main() {
@@ -72,31 +73,51 @@ fun inicio() {
 
 fun cadastrarQuartos() {
 
-    println()
-
-
-    println("Os quartos disponiveis são:\n")
-    var m = 1
-    for (i in quartos){
-        println("Quarto $m, está $i")
-        m++
+    print("Qual o valor padrão da diária? ")
+    var daily = readln().toDouble()
+    while (daily != diaria ){
+        print( "Valor inválido, $nome\n\n")
+        print("Qual o valor padrão da diária?")
+        daily = readln().toDouble()
     }
-    println("Qual quarto você deseja reservar ?")
+
+    print(" Quantas diárias serão necessárias? ")
+    var estadia = readln().toInt()
+    var hospedagem = diaria*estadia
+
+    println("\nO valor de $estadia dias de hospedagem é de R$ $hospedagem\n ")
+
+    print(" Qual o nome do hospede? ")
+    var name = readln().uppercase()
+
+    println("Qual quarto você deseja reservar ? (1 - 20) \n")
     var reserva = readln().toInt()
-    if (reserva in 1..20){
-        if (quartos[reserva - 1] == "livre"){
-            quartos[reserva - 1] = "ocupado"
-            println("Reserva do quarto $reserva feita com sucesso!")
+    if (reserva in 1..20) {
+        if (quartos[reserva - 1] == "livre") {
+            println("Quarto Livre.")
+            print("\n $nome, você confirma a hospedagem para $name por $estadia dias para o quarto $reserva por R$ $hospedagem  (S/N): ")
+            var confirma = readln().uppercase()
+            if(confirma == "S"){
+                quartos[reserva - 1] = "ocupado"
+                println("$nome, reserva do quarto $reserva feita com sucesso, para $name!")
+            }else{
+                println("Tudo bem, quem sabe na proxima!\n")
+                inicio()
+            }
+        } else {
+            println("Quarto já está ocupado\n")
+            println(" Lista de quartos e suas ocupações ")
+            var m = 1
+            for (i in quartos) {
+                println("Quarto $m, está $i")
+                m++
+            }
             println("")
-            inicio()
-        }else{
-            println("Quarto já está ocupado")
-           cadastrarQuartos()
+            cadastrarQuartos()
         }
     }
     println("")
     inicio()
-
 }
 
 fun AbastecimentoDeAutomoveis() {

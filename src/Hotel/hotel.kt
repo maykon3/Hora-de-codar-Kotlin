@@ -6,27 +6,12 @@ val senha = 2678
 var nome = ""
 var login = mutableListOf<String>()
 var quartos = mutableListOf(
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
-    "livre",
+    "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre", "livre",
     )
+val listaHospedes = mutableListOf(
+    "Carlos Villagran", "Maria Antonieta de las Nieves", "Roberto Gómez Bolaños", "Florinda Meza", "Ramón Valdés", "Rubén Aguirre", "Angelines Fernández", "Edgar Vivar", "Horácio Gómez Bolaños", "Raúl Padilla"
+)
+
 fun main() {
 
     print("Qual o seu nome: ")
@@ -55,15 +40,16 @@ fun inicio() {
 
     println("Bem vindo ao Ibis, $nome. É um imenso prazer ter você por aqui!")
 
-    println("Escolha uma opção de cadastro:\n 1. Quartos\n 2. Hospede\n 3. Abastecimento\n 4. Sair \n 5. Login")
+    println("Escolha uma opção de cadastro:\n 1. Quartos\n 2. Hospede\n 3. Abastecimento\n 4. Evento\n 5. Sair \n 6. Login")
 
     val escolha = readln().toIntOrNull()
     when (escolha) {
         1 -> cadastrarQuartos()
         2 -> cadastrarHospedes()
         3 -> AbastecimentoDeAutomoveis()
-        4 -> sairDoHotel()
-        5 -> login()
+        4 -> eventos()
+        5 -> sairDoHotel()
+        6 -> login()
         else -> erro()
     }
 }
@@ -74,8 +60,7 @@ fun cadastrarQuartos() {
     var daily = readln().toDouble()
     while (daily != 55.0 ){
         print( "Valor inválido, $nome\n\n")
-        print("Qual o valor padrão da diária?")
-        daily = readln().toDouble()
+        return cadastrarQuartos()
     }
 
     print(" Quantas diárias serão necessárias? ")
@@ -86,6 +71,8 @@ fun cadastrarQuartos() {
 
     print(" Qual o nome do hospede? ")
     var name = readln().uppercase()
+    listaHospedes.add(name)
+
 
     println("Qual quarto você deseja reservar ? (1 - 20) \n")
     var reserva = readln().toInt()
@@ -130,7 +117,7 @@ fun sairDoHotel() {
     println("Você deseja sair? S/N")
     var confirma = readln().uppercase()
     if (confirma == "S") {
-        println( "Muito obrigado e até logo")
+        println( "Muito obrigado e até logo, $nome")
         exitProcess(0)
     } else if ( confirma == "N") {
         inicio()
@@ -139,25 +126,29 @@ fun sairDoHotel() {
     }
 }
 
+fun listar(listaHospedes: MutableList<String>){
+    println("${listaHospedes}\n")
+    cadastrarHospedes()
+}
+
 
 fun cadastrarHospedes() {
-    val listaHospedes = mutableListOf(
-        "Carlos Villagran", "Maria Antonieta de las Nieves", "Roberto Gómez Bolaños", "Florinda Meza", "Ramón Valdés", "Rubén Aguirre", "Angelines Fernández", "Edgar Vivar", "Horácio Gómez Bolaños", "Raúl Padilla"
-    )
 
     while (true) {
         println("""Cadastro de Hóspedes
             Selecione uma opção:
             1. Cadastrar
             2. Pesquisar
-            3. Sair""")
+            3. Listar
+            4. Sair""")
 
         val escolha = readln().toIntOrNull()
 
         when (escolha) {
             1 -> cadastrarHospede(listaHospedes)
             2 -> pesquisarHospede(listaHospedes)
-            3 -> sairCadastroDeHospedes()
+            3 -> listar(listaHospedes)
+            4 -> sairCadastroDeHospedes()
             else -> erroCadastroDeHospedes()
         }
     }
@@ -198,7 +189,8 @@ fun cadastrarHospede(listaHospedes: MutableList<String>) {
 
     }
 
-    println("Lista de Hóspedes atuais " + listaHospedes)
+    println("Lista de Hóspedes atuais: " + listaHospedes)
+    cadastrarHospedes()
 
 }
 
@@ -210,8 +202,10 @@ fun pesquisarHospede(listaHospedes: MutableList<String>) {
         println("\nEncontramos a(s) hóspede(s):")
         listaHospedes.filter { it.contains(nomeHospede, ignoreCase = true) }
             .forEach { println(it) }
+        cadastrarHospedes()
     } else {
         println("Não encontramos nenhuma hóspede com esse nome.")
+        cadastrarQuartos()
     }
 }
 

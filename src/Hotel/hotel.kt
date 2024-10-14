@@ -33,7 +33,6 @@ fun main() {
 fun login (){
     println(login)
     println("")
-    main()
 }
 
 fun inicio() {
@@ -65,6 +64,11 @@ fun cadastrarQuartos() {
 
     print(" Quantas diárias serão necessárias? ")
     var estadia = readln().toInt()
+    while (estadia > 30 || estadia < 1){
+        print( "Valor inválido\n")
+        print(" Quantas diárias serão necessárias? ")
+        estadia = readln().toInt()
+    }
     var hospedagem = 55.0*estadia
 
     println("\nO valor de $estadia dias de hospedagem é de R$ $hospedagem\n ")
@@ -76,6 +80,12 @@ fun cadastrarQuartos() {
 
     println("Qual quarto você deseja reservar ? (1 - 20) \n")
     var reserva = readln().toInt()
+    while (reserva < 1 || reserva > 20){
+        println("Valor Invalido")
+        println("Qual quarto você deseja reservar ? (1 - 20) \n")
+        reserva = readln().toInt()
+    }
+
     if (reserva in 1..20) {
         if (quartos[reserva - 1] == "livre") {
             println("Quarto Livre.")
@@ -88,7 +98,7 @@ fun cadastrarQuartos() {
                 println("Tudo bem, quem sabe na proxima!\n")
                 inicio()
             }
-        } else {
+        }else{
             println("Quarto já está ocupado\n")
             println(" Lista de quartos e suas ocupações ")
             var m = 1
